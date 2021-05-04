@@ -2,6 +2,7 @@ package ui;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -21,6 +22,7 @@ public class ContentBox extends VBox {
     public ContentBox(Path contentFilePath) {
         this.contentFilePath = contentFilePath;
         new DocumentContent(contentFilePath).addToContentBox(this);
+        this.setPrefWidth(1290);
     }
 
     public void saveToFile() throws IOException {

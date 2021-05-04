@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import java.io.File;
@@ -27,9 +28,9 @@ public class XmlEditorPane extends BorderPane {
             public void handle(ActionEvent event) {
                 Node center = getCenter();
                 if (center != null){
-                    ContentBox contentBox = (ContentBox) center;
+                    ContentScrollPane contentScrollPane = (ContentScrollPane) center;
                     try {
-                        contentBox.saveToFile();
+                        contentScrollPane.saveToFile();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -59,7 +60,7 @@ public class XmlEditorPane extends BorderPane {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("xml-files", "xml"));
                 File file = fileChooser.showOpenDialog(getScene().getWindow());
-                setCenter(new ContentBox(file.toPath()));
+                setCenter(new ContentScrollPane(new ContentBox(file.toPath())));
             }
         };
     }
